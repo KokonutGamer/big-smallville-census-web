@@ -11,10 +11,10 @@
 /* variable declaration with double hyphen (--) */
 /* !important overrides any other styles on the element */
 :root {
-    --primary-color: #026467;
-    --secondary-color: #E5F5EA;
-    --body-text-color: #596392;
-    --navbar-footer-color: #F9F9F9;
+    --primary-color: #02394A;
+    --secondary-color: #95B2B0;
+    --body-text-color: #02394A;
+    --navbar-footer-color: #95B2B0;
 }
 
 /* note: we use the bootstrap defaults for danger, success, info, and warning */
