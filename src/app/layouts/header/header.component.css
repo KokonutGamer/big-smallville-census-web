@@ -3,5 +3,7 @@ header {
 }
 
 .site-logo {
-    font-size: 1.5em;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    text-decoration: none;
 }
