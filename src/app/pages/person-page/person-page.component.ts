@@ -4,11 +4,12 @@ import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-person-page',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, MatDatepickerModule, MatInputModule, MatFormFieldModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './person-page.component.html',
   styleUrl: './person-page.component.css'
 })

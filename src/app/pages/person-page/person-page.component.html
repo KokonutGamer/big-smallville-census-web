@@ -5,13 +5,9 @@
         </div>
     </div>
 
+    <!-- TODO move this into a pop-up window -->
     <div class="row mt-5 mb-5">
-        <!-- <form class="container text-center" #incentiveForm="ngForm" (ngSubmit)="submitIncentive(incentiveForm)">
-            <label class="p-3" for="ssn">Calculate incentives for a citizen based on SSN</label>
-            <input type="text" name="ssn" class="form-control shadow-effect" placeholder="Input Citizen's SSN"
-                minlength="9" maxlength="9" [ngModel]="ssn" required />
-        </form> -->
-        <form class="container text-center" #incentiveForm="ngForm" (ngSubmit)="submitIncentive(incentiveForm)">
+        <form class="container" #incentiveForm="ngForm" (ngSubmit)="submitIncentive(incentiveForm)">
             <mat-form-field>
                 <mat-label>Social Security Number</mat-label>
                 <input matInput [(ngModel)]="ssn" name="ssn">
@@ -19,6 +15,7 @@
         </form>
     </div>
 
+    <!-- TODO move this into a pop-up window -->
     <div class="row mt-5 mb-5">
         <!-- First name -->
         <mat-form-field>
@@ -32,11 +29,30 @@
             <input matInput>
         </mat-form-field>
 
+        <!-- SSN -->
         <mat-form-field>
             <mat-label>Social Security Number</mat-label>
             <input matInput maxlength="9">
         </mat-form-field>
 
+        <!-- Lot number -->
+        <mat-form-field>
+            <mat-label>Lot Number</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <!-- Marital status -->
+        <mat-form-field>
+            <mat-label>Marital Status</mat-label>
+            <mat-select>
+                <mat-option value="single">Single</mat-option>
+                <mat-option value="married">Married</mat-option>
+                <mat-option value="divorced">Divorced</mat-option>
+                <mat-option value="widowed">Widowed</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Birth date -->
         <mat-form-field>
             <mat-label>Birth Date</mat-label>
             <input matInput [matDatepicker]="picker" [max]="today">
