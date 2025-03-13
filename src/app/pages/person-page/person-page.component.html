@@ -8,7 +8,7 @@
     <div class="row mt-5 mb-5">
         <form class="container text-center" #incentiveForm="ngForm" (ngSubmit)="submitIncentive(incentiveForm)">
             <input type="text" name="ssn" class="form-control shadow-effect" placeholder="Input Citizen's SSN"
-                minlength="9" maxlength="9" #ssnTextbox="ngModel" [(ngModel)]="ssn" required />
+                minlength="9" maxlength="9" [ngModel]="ssn" required />
         </form>
     </div>
 </div>

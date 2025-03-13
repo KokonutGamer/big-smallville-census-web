@@ -17,6 +17,9 @@ export class PersonPageComponent {
   }
 
   submitIncentive(formData: NgForm) {
-    console.log(formData.value)
+    this.ssn = formData.value.ssn;
+    this.backendService.calculateIncentives(this.ssn).subscribe((response) => {
+      console.log(response);
+    });
   }
 }

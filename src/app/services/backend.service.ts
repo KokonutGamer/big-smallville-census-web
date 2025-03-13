@@ -11,7 +11,7 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   // Function to calculate incentives for a person
-  calculateIncentives(ssn: string): Observable<Number[]> {
-    return this.http.get<Number[]>(`${this.baseUrl}/persons/incentive?ssn=${encodeURI(ssn)}`);
+  calculateIncentives(ssn: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/persons/incentive?ssn=${encodeURI(ssn)}`);
   }
 }
