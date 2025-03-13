@@ -1,7 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 bg-secondary-theme p-5 shadow-effect">
-            <h2 class="text-center text-theme-primary">Person Methods</h2>
+            <h2 class="text-center text-theme-primary">Methods for Citizens</h2>
         </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <form class="container text-center" #incentiveForm="ngForm" (ngSubmit)="submitIncentive(incentiveForm)">
+            <input type="text" name="ssn" class="form-control shadow-effect" placeholder="Input Citizen's SSN"
+                minlength="9" maxlength="9" #ssnTextbox="ngModel" [(ngModel)]="ssn" required />
+        </form>
     </div>
 </div>
