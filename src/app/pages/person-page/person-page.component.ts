@@ -1,19 +1,39 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-person-page',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, MatDatepickerModule, MatInputModule, MatFormFieldModule],
   templateUrl: './person-page.component.html',
   styleUrl: './person-page.component.css'
 })
 export class PersonPageComponent {
+  today = new Date();
   ssn: string;
+
+  // create person parameters
+  createSSN: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
 
   constructor(private backendService: BackendService) {
     this.ssn = "";
+    this.createSSN = "";
+    this.firstName = "";
+    this.lastName = "";
+    this.email = "";
+    this.phone = "";
+  }
+
+  submitNewPerson(formData: NgForm) {
+
   }
 
   submitIncentive(formData: NgForm) {
