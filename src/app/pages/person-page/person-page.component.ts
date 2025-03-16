@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { BackendService } from '../../services/backend.service';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
+import { IncentiveDialogComponent } from '../../dialogs/incentive-dialog/incentive-dialog.component';
 
 @Component({
   selector: 'app-person-page',
@@ -14,33 +16,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './person-page.component.css'
 })
 export class PersonPageComponent {
-  today = new Date();
-  ssn: string;
+  readonly dialog = inject(MatDialog);
 
-  // create person parameters
-  createSSN: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  constructor(private backendService: BackendService) { }
 
-  constructor(private backendService: BackendService) {
-    this.ssn = "";
-    this.createSSN = "";
-    this.firstName = "";
-    this.lastName = "";
-    this.email = "";
-    this.phone = "";
-  }
-
-  submitNewPerson(formData: NgForm) {
-
+  openIncentiveCalculator(): void {
+    const dialogRef = this.dialog.open(IncentiveDialogComponent);
   }
 
   submitIncentive(formData: NgForm) {
-    this.ssn = formData.value.ssn;
-    this.backendService.calculateIncentives(this.ssn).subscribe((response) => {
-      console.log(response);
-    });
+    // this.ssn = formData.value.ssn;
+    // this.backendService.calculateIncentives(this.ssn).subscribe((response) => {
+    //   console.log(response);
+    // });
   }
 }
