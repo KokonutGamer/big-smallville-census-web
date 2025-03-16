@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-household-page',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './household-page.component.css'
 })
 export class HouseholdPageComponent {
+  readonly dialog = inject(MatDialog);
 
+  openLotNumberDialog(): void {
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+    // this.dialog.open();
+  }
 }
