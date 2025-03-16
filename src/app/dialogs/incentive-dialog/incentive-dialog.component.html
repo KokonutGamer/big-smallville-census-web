@@ -6,7 +6,13 @@
     </mat-form-field>
 </mat-dialog-content>
 
+@if (incentive()) {
+<p>
+    Percent incentive: <em>{{incentive()}}</em>
+</p>
+}
+
 <mat-dialog-actions>
     <button mat-button (click)="submitIncentive()">Submit</button>
-    <button mat-button [mat-dialog-close]="clearData()" cdkFocusInitial>Close</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
 </mat-dialog-actions>

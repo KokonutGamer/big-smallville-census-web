@@ -1,5 +1,5 @@
-import { Component, inject, signal, input, model } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, inject, input, model } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,21 +19,19 @@ export class IncentiveDialogComponent {
   today = new Date();
 
   readonly dialogRef = inject(MatDialogRef<IncentiveDialogComponent>);
-  readonly incentive = signal(0);
+  readonly incentive = model<number>();
 
-  readonly ssn = model('');
+  ssn = model('');
 
   constructor(private backendService: BackendService) { }
 
   submitIncentive(): void {
-    console.log("ssn = ", this.ssn());
+    this.backendService.calculateIncentives(this.ssn()).subscribe((response) => {
+      this.incentive.set(response.percentIncentive);
+    });
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  clearData(): void {
-    // idk what this is for now
   }
 }

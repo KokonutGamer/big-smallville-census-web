@@ -18,9 +18,11 @@ import { IncentiveDialogComponent } from '../../dialogs/incentive-dialog/incenti
 export class PersonPageComponent {
   readonly dialog = inject(MatDialog);
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {}
 
   openIncentiveCalculator(): void {
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
     const dialogRef = this.dialog.open(IncentiveDialogComponent);
   }
 
