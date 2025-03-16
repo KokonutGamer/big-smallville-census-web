@@ -19,9 +19,8 @@ export class IncentiveDialogComponent {
   today = new Date();
 
   readonly dialogRef = inject(MatDialogRef<IncentiveDialogComponent>);
-  readonly incentive = model<number>();
-
-  ssn = model('');
+  readonly incentive = model();
+  readonly ssn = model('');
 
   constructor(private backendService: BackendService) { }
 
