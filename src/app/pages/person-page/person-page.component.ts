@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { BackendService } from '../../services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IncentiveDialogComponent } from '../../dialogs/incentive-dialog/incentive-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +12,6 @@ import { MatDividerModule } from '@angular/material/divider'
 })
 export class PersonPageComponent {
   readonly dialog = inject(MatDialog);
-
-  constructor(private backendService: BackendService) { }
 
   openIncentiveCalculator(): void {
     const buttonElement = document.activeElement as HTMLElement;
