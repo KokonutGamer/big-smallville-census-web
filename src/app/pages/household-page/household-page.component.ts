@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { LotNumberDialogComponent } from '../../dialogs/lot-number-dialog/lot-number-dialog.component';
 
 @Component({
   selector: 'app-household-page',
@@ -13,6 +14,6 @@ export class HouseholdPageComponent {
   openLotNumberDialog(): void {
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
-    // this.dialog.open();
+    this.dialog.open(LotNumberDialogComponent);
   }
 }
