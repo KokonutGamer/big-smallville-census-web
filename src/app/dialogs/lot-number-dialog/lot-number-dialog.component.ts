@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { MatDialogActions, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-lot-number-dialog',
-  imports: [MatDialogContent, MatFormFieldModule, MatDialogActions, MatDialogClose],
+  imports: [MatDialogContent, MatFormFieldModule, MatDialogActions, MatDialogClose, MatButtonModule, MatDialogTitle, MatInputModule],
   templateUrl: './lot-number-dialog.component.html',
   styleUrl: './lot-number-dialog.component.css'
 })
