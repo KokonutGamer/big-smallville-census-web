@@ -2,11 +2,11 @@
 <mat-dialog-content>
     <mat-form-field>
         <mat-label>Social Security Number</mat-label>
-        <input matInput [(ngModel)]="ssn" name="ssn">
+        <input matInput [(ngModel)]="ssn" />
     </mat-form-field>
-
 </mat-dialog-content>
 
 <mat-dialog-actions>
+    <button mat-button (click)="submitIncentive()">Submit</button>
     <button mat-button [mat-dialog-close]="clearData()" cdkFocusInitial>Close</button>
 </mat-dialog-actions>
