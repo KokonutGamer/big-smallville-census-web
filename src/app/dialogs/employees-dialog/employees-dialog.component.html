@@ -1,1 +1,37 @@
-<p>employees-dialog works!</p>
+<h2 mat-dialog-title>List Employees in a Business</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Business Name</mat-label>
+        <input matInput [(ngModel)]="businessName" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Income Limit</mat-label>
+        <input type="number" matInput [(ngModel)]="incomeLimit" />
+    </mat-form-field>
+
+    <!-- TABLE -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let employee"> {{ employee.firstName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let employee"> {{ employee.lastName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="income">
+            <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+            <td mat-cell *matCellDef="let employee"> {{ employee.income }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="submitBusinessName()">Submit</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+</mat-dialog-actions>

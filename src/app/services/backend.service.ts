@@ -112,7 +112,6 @@ export class BackendService {
     return this.http.get(`${this.baseUrl}/businesses/listBusRecords?businessName=${encodeURI(businessName)}`);
   }
 
-  // TODO response message back on successful update to wage
   updateMinWage(businessName: string, newWage: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/businesses/updateMinWage?businessName=${encodeURI(businessName)}` +
       `&newWage=${encodeURI(newWage.toString())}`, null);
@@ -134,7 +133,7 @@ export class BackendService {
           // Map the data to match Employee[]
           return response.employees.map((item: any) => ({
             income: item.income || 0,
-            firstName: item.income || '',
+            firstName: item.firstName || '',
             lastName: item.lastName || ''
           }));
         })

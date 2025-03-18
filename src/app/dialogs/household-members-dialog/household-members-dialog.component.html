@@ -1,53 +1,52 @@
 <h2 mat-dialog-title>List Household Members</h2>
 <mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Lot Number</mat-label>
-        <input matInput [(ngModel)]="lotNumber" />
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Limit</mat-label>
-        <input type="number" matInput [(ngModel)]="limit" />
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Lot Number</mat-label>
+    <input matInput [(ngModel)]="lotNumber" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Limit</mat-label>
+    <input type="number" matInput [(ngModel)]="limit" />
+  </mat-form-field>
+
+  <!-- Insert table logic here -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let person"> {{ person.firstName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let person"> {{ person.lastName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+      <td mat-cell *matCellDef="let person"> {{ person.birthDate }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maritalStatus">
+      <th mat-header-cell *matHeaderCellDef> Marital Status </th>
+      <td mat-cell *matCellDef="let person"> {{ person.maritalStatus }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let person"> {{ person.email }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let person"> {{ person.phone }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </mat-dialog-content>
 
-<!-- Insert table logic here -->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef> First Name </th>
-        <td mat-cell *matCellDef="let person"> {{ person.firstName }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef> Last Name </th>
-        <td mat-cell *matCellDef="let person"> {{ person.lastName }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="birthDate">
-        <th mat-header-cell *matHeaderCellDef> Birth Date </th>
-        <td mat-cell *matCellDef="let person"> {{ person.birthDate }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="maritalStatus">
-        <th mat-header-cell *matHeaderCellDef> Marital Status </th>
-        <td mat-cell *matCellDef="let person"> {{ person.maritalStatus }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let person"> {{ person.email }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Phone </th>
-        <td mat-cell *matCellDef="let person"> {{ person.phone }} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-
 <mat-dialog-actions>
-    <button mat-button (click)="submitLotNumber()">Submit</button>
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+  <button mat-button (click)="submitLotNumber()">Submit</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
 </mat-dialog-actions>
