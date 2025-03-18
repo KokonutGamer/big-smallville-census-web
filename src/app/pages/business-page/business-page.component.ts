@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AverageIncomeDialogComponent } from '../../dialogs/average-income-dialog/average-income-dialog.component';
 import { UpdateMinWageDialogComponent } from '../../dialogs/update-min-wage-dialog/update-min-wage-dialog.component';
 import { EmployeesDialogComponent } from '../../dialogs/employees-dialog/employees-dialog.component';
+import { BusinessRecordsDialogComponent } from '../../dialogs/business-records-dialog/business-records-dialog.component';
 
 @Component({
   selector: 'app-business-page',
@@ -30,5 +31,11 @@ export class BusinessPageComponent {
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
     this.dialog.open(EmployeesDialogComponent);
+  }
+  
+  openBusinessRecordsDialog(): void {
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+    this.dialog.open(BusinessRecordsDialogComponent);
   }
 }

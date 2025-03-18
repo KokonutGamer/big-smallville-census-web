@@ -124,6 +124,7 @@ export class BackendService {
         return response.busRecords.map((item: any) => ({
           revenue: item.revenue || 0,
           expenses: item.expenses || 0,
+          profit: item.profit || 0,
           taxesPaid: item.taxesPaid || 0,
           propertyTaxes: item.propertyTaxes || 0,
           year: item.year || 0,
