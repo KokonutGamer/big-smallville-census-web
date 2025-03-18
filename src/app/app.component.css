@@ -1,6 +1,7 @@
 .app-body {
     margin-top: 150px;
-    min-height: 45vh;
+    min-height: 55vh;
+    background-color: aliceblue;
 }
 
 app-header, app-navbar {
