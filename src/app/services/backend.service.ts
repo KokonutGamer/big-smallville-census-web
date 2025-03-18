@@ -106,14 +106,14 @@ export class BackendService {
     return this.http.get(`${this.baseUrl}/businesses/avgincome?businessName=${encodeURI(businessName)}`);
   }
 
+  // TODO wait on API change
   getBusinessRecords(businessName: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/businesses/listBusRecords?businessName=${encodeURI(businessName)}`);
   }
 
   updateMinWage(businessName: string, newWage: number): Observable<any> {
-    // TODO implement put mapping in API
-    const body = {};
-    return this.http.put(`${this.baseUrl}/businesses/updateMinWage?businessName=${encodeURI(businessName)}&newWage=${encodeURI(newWage.toString())}`, body);
+    return this.http.put(`${this.baseUrl}/businesses/updateMinWage?businessName=${encodeURI(businessName)}` +
+      `&newWage=${encodeURI(newWage.toString())}`, null);
   }
 
   getEmployees(businessName: string): Observable<any> {
