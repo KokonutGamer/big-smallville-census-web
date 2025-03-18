@@ -18,7 +18,6 @@ import { MatInputModule } from '@angular/material/input';
 export class IncentiveDialogComponent {
   today = new Date();
 
-  readonly dialogRef = inject(MatDialogRef<IncentiveDialogComponent>);
   readonly incentive = model();
   readonly ssn = model('');
 
@@ -28,9 +27,5 @@ export class IncentiveDialogComponent {
     this.backendService.calculateIncentives(this.ssn()).subscribe((response) => {
       this.incentive.set(response.percentIncentive);
     });
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }

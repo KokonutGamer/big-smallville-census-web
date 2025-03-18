@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { LotNumberParameters } from '../parameters/lot-number-parameters';
 
 @Injectable({
@@ -21,8 +21,11 @@ export class BackendService {
   }
 
   addPerson(ssn: string, maritalStatusId: string, lotNumber: string, firstName: string, lastName: string, birthDate: Date, email?: string, phone?: string): Observable<any> {
-    // TODO implement
-    return this.http.put(``, null);
+    const year = birthDate.getFullYear();
+    const month = String(birthDate.getMonth() + 1).padStart(2, '0');
+    const day = String(birthDate.getDate()).padStart(2, '0');
+    const formattedDate = `${month}-${day}-${year}`
+    return this.http.put(`${this.baseUrl}/persons/add?ssn=${encodeURI(ssn)}&maritalStatusID=${encodeURI(maritalStatusId)}&lotNumber=${encodeURI(lotNumber)}&firstName=${encodeURI(firstName)}&lastName=${encodeURI(lastName)}&birthDate=${encodeURI(formattedDate)}${email ? `&email=${encodeURI(email)}` : ''}${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
   }
 
   getNeedyParents(): Observable<any> {

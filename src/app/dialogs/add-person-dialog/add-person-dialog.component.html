@@ -3,31 +3,31 @@
     <!-- First name -->
     <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="firstName" required />
     </mat-form-field>
 
     <!-- Last name -->
     <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="lastName" required />
     </mat-form-field>
 
     <!-- SSN -->
     <mat-form-field>
         <mat-label>Social Security Number</mat-label>
-        <input matInput maxlength="9">
+        <input matInput maxlength="9" [(ngModel)]="ssn" required />
     </mat-form-field>
 
     <!-- Lot number -->
     <mat-form-field>
         <mat-label>Lot Number</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="lotNumber" required />
     </mat-form-field>
 
     <!-- Marital status -->
     <mat-form-field>
         <mat-label>Marital Status</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="maritalStatus" required>
             <mat-option value="single">Single</mat-option>
             <mat-option value="married">Married</mat-option>
             <mat-option value="divorced">Divorced</mat-option>
@@ -38,7 +38,7 @@
     <!-- Birth date -->
     <mat-form-field class="mb-5">
         <mat-label>Birth Date</mat-label>
-        <input matInput [matDatepicker]="picker" [max]="today">
+        <input matInput [matDatepicker]="picker" [max]="today" [(ngModel)]="birthDate" required>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker>
@@ -51,12 +51,12 @@
 
     <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="email">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Phone Number</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="phone">
     </mat-form-field>
 </mat-dialog-content>
 
