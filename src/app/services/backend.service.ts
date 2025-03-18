@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { Person } from '../parameters/person';
+import { Employee } from '../parameters/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -111,14 +112,33 @@ export class BackendService {
     return this.http.get(`${this.baseUrl}/businesses/listBusRecords?businessName=${encodeURI(businessName)}`);
   }
 
+  // TODO response message back on successful update to wage
   updateMinWage(businessName: string, newWage: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/businesses/updateMinWage?businessName=${encodeURI(businessName)}` +
       `&newWage=${encodeURI(newWage.toString())}`, null);
   }
 
-  getEmployees(businessName: string): Observable<any> {
-    // TODO implement
-    return this.http.get(``);
+  getEmployees(businessName: string, incomeLimit: number): Observable<Employee[]> {
+    return this.http.get<any>(`${this.baseUrl}/businesses/listEmployees` +
+      `?businessName=${encodeURI(businessName)}` +
+      `&incomeLimit=${encodeURI(incomeLimit.toString())}`).pipe(
+        map(response => {
+          console.log('Raw API Response:', response);
+
+          // Ensure response is valid
+          if (!response || !Array.isArray(response.employees)) {
+            console.error('Invalid response format:', response);
+            throw new Error('API response does not contain parents array');
+          }
+
+          // Map the data to match Employee[]
+          return response.employees.map((item: any) => ({
+            income: item.income || 0,
+            firstName: item.income || '',
+            lastName: item.lastName || ''
+          }));
+        })
+      );
   }
 
   /* 
