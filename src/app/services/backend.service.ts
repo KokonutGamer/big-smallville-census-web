@@ -103,8 +103,7 @@ export class BackendService {
   */
 
   getAverageIncome(businessName: string): Observable<any> {
-    // TODO implement
-    return this.http.get(``);
+    return this.http.get(`${this.baseUrl}/businesses/avgincome?businessName=${encodeURI(businessName)}`);
   }
 
   getBusinessRecords(businessName: string): Observable<any> {
