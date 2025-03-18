@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { Person } from '../parameters/person';
 import { Employee } from '../parameters/employee';
-import { Property } from './property';
+import { Property } from '../parameters/property';
 
 @Injectable({
   providedIn: 'root'
@@ -152,7 +152,7 @@ export class BackendService {
 
   getProperties(): Observable<Property[]> {
     // TODO implement
-    return this.http.get<any>(`${this.baseUrl}/properties/displayPropertyTypeTable}`).pipe(
+    return this.http.get<any>(`${this.baseUrl}/properties/displayPropertyTypeTable`).pipe(
       map(response => {
         console.log('Raw API Response:', response);
 
