@@ -2,3 +2,8 @@
     margin-top: 150px;
     min-height: 45vh;
 }
+
+app-header, app-navbar {
+    position: absolute;
+    z-index: -100;
+}

@@ -4,6 +4,9 @@ import { IncentiveDialogComponent } from '../../dialogs/incentive-dialog/incenti
 import { MatButtonModule } from '@angular/material/button';
 import { AddPersonDialogComponent } from '../../dialogs/add-person-dialog/add-person-dialog.component';
 import { BackendService } from '../../services/backend.service';
+import { EMPTY, Observable } from 'rxjs';
+import { Person } from '../../parameters/person';
+import { ParentsDialogComponent } from '../../dialogs/parents-dialog/parents-dialog.component';
 
 @Component({
   selector: 'app-person-page',
@@ -13,6 +16,7 @@ import { BackendService } from '../../services/backend.service';
 })
 export class PersonPageComponent {
   readonly dialog = inject(MatDialog);
+  persons$: Observable<Person[]> = EMPTY;
 
   constructor(private backendService: BackendService) { }
 
@@ -32,9 +36,13 @@ export class PersonPageComponent {
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
 
-    this.backendService.getNeedyParents().subscribe((response) => {
-      console.log(response);
-      
+    this.persons$ = this.backendService.getNeedyParents();
+    this.persons$.subscribe((response) => {
+      this.dialog.open(ParentsDialogComponent, { data: response });
     });
+    // this.backendService.getNeedyParents().subscribe((response) => {
+    //   console.log(response);
+
+    // });
   }
 }

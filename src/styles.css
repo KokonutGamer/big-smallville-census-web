@@ -5,6 +5,7 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* css pseudo-class - root */
 /* useful for declaring global css variables */

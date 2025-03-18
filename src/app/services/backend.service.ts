@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, Observable } from 'rxjs';
+import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { LotNumberParameters } from '../parameters/lot-number-parameters';
+import { Person } from '../parameters/person';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +29,30 @@ export class BackendService {
     return this.http.put(`${this.baseUrl}/persons/add?ssn=${encodeURI(ssn)}&maritalStatusID=${encodeURI(maritalStatusId)}&lotNumber=${encodeURI(lotNumber)}&firstName=${encodeURI(firstName)}&lastName=${encodeURI(lastName)}&birthDate=${encodeURI(formattedDate)}${email ? `&email=${encodeURI(email)}` : ''}${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
   }
 
-  getNeedyParents(): Observable<any> {
+  getNeedyParents(): Observable<Person[]> {
     // TODO implement
-    return this.http.get(`${this.baseUrl}/persons/needyParents`);
+    return this.http.get<any>(`${this.baseUrl}/persons/needyParents`).pipe(
+      map(response => {
+        console.log('Raw API Response:', response);
+
+        // Ensure response is valid
+        if (!response || !Array.isArray(response.parents)) {
+          console.error('Invalid response format:', response);
+          throw new Error('API response does not contain persons array');
+        }
+
+        // Map the data to match Person[]
+        return response.parents.map((item: any) => ({
+          firstName: item.firstName || '',
+          lastName: item.lastName || '',
+          ssn: item.ssn || '',
+          birthDate: item.birthDate || '',
+          maritalStatus: item.maritalStatus || '',
+          email: item.email || '',
+          phone: item.phone || ''
+        }));
+      })
+    );
   }
 
   /* 
