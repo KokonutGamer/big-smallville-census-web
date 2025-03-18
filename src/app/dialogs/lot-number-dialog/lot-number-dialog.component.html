@@ -3,27 +3,27 @@
     <!-- TODO list all fields for getting the address -->
     <mat-form-field>
         <mat-label>Street</mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="street" required />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>ZIPCode</mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="zipcode" required />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>House Number</mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="houseNumber" required />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Apartment Number (Optional)</mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="apartmentNumber" />
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>District</mat-label>
-        <input matInput />
+        <input matInput [(ngModel)]="district" required />
     </mat-form-field>
 </mat-dialog-content>
 

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LotNumberDialogComponent } from '../../dialogs/lot-number-dialog/lot-number-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { HouseholdMembersDialogComponent } from '../../dialogs/household-members-dialog/household-members-dialog.component';
 
 @Component({
   selector: 'app-household-page',
@@ -16,5 +17,11 @@ export class HouseholdPageComponent {
     const buttonElement = document.activeElement as HTMLElement;
     buttonElement.blur();
     this.dialog.open(LotNumberDialogComponent);
+  }
+
+  openHouseholdMembersDialog(): void {
+    const buttonElement = document.activeElement as HTMLElement;
+    buttonElement.blur();
+    this.dialog.open(HouseholdMembersDialogComponent);
   }
 }

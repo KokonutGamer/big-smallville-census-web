@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
-import { LotNumberParameters } from '../parameters/lot-number-parameters';
 import { Person } from '../parameters/person';
 
 @Injectable({
@@ -26,15 +25,15 @@ export class BackendService {
     const month = String(birthDate.getMonth() + 1).padStart(2, '0');
     const day = String(birthDate.getDate()).padStart(2, '0');
     const formattedDate = `${month}-${day}-${year}`
-    return this.http.put(`${this.baseUrl}/persons/add\
-      ?ssn=${encodeURI(ssn)}\
-      &maritalStatusID=${encodeURI(maritalStatusId)}\
-      &lotNumber=${encodeURI(lotNumber)}\
-      &firstName=${encodeURI(firstName)}\
-      &lastName=${encodeURI(lastName)}\
-      &birthDate=${encodeURI(formattedDate)}\
-      ${email ? `&email=${encodeURI(email)}` : ''}\
-      ${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
+    return this.http.put(`${this.baseUrl}/persons/add` +
+      `?ssn=${encodeURI(ssn)}` +
+      `&maritalStatusID=${encodeURI(maritalStatusId)}` +
+      `&lotNumber=${encodeURI(lotNumber)}` +
+      `&firstName=${encodeURI(firstName)}` +
+      `&lastName=${encodeURI(lastName)}` +
+      `&birthDate=${encodeURI(formattedDate)}` +
+      `${email ? `&email=${encodeURI(email)}` : ''}` +
+      `${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
   }
 
   getNeedyParents(): Observable<Person[]> {
@@ -65,18 +64,17 @@ export class BackendService {
   /* 
   ==================== HOUSEHOLD ====================
   */
-  getLotNumber(parameters: LotNumberParameters): Observable<any> {
-    return this.http.get(`${this.baseUrl}/persons/lot-number\
-      ?street=${encodeURI(parameters.street)}\
-      &zipcode=${encodeURI(parameters.zipcode)}\
-      &house-number=${encodeURI(parameters.houseNumber)}\
-      &district=${encodeURI(parameters.district)}\
-      ${parameters.aparmentNumber ? `&apartment-number=${encodeURI(parameters.aparmentNumber)}` : ''}`);
+  getLotNumber(street: string, zipcode: string, houseNumber: string, district: string, apartmentNumber?: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/households/lot-number` +
+      `?street=${encodeURI(street)}` +
+      `&zipcode=${encodeURI(zipcode)}` +
+      `&house-number=${encodeURI(houseNumber)}` +
+      `&district=${encodeURI(district)}` +
+      `${apartmentNumber ? `&apartment-number=${encodeURI(apartmentNumber)}` : ''}`);
   }
 
   getHouseholdMembers(lotNumber: string, limit: string): Observable<any> {
-    // TODO implement
-    return this.http.get(``);
+    return this.http.get(`${this.baseUrl}/households/members?lotNumber=${encodeURI(lotNumber)}&limit=${encodeURI(limit)}`);
   }
 
   /* 
