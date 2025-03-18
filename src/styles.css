@@ -21,15 +21,15 @@
 /* note: we use the bootstrap defaults for danger, success, info, and warning */
 
 /* body styles */
-body {
+/* body {
     font-family: 'Lato', sans-serif;
     font-size: 14px;
     color: var(--body-text-color);
     display: contents;
-}
+} */
 
 .site-logo {
-    padding: 5px 20px;
+    padding: 20px;
     border-radius: 20px;
     background-color: var(--secondary-color);
     color: var(--primary-color);
@@ -39,11 +39,13 @@ body {
     color: var(--primary-color);
 }
 
+/*
+
 .shadow-effect {
     border: none;
     box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
 }
-
+*/
 .bg-theme {
     background-color: var(--primary-color);
 }
@@ -56,6 +58,7 @@ body {
     color: var(--primary-color);
 }
 
+/*
 input[type=text],
 input[type=email] {
     height: 60px;
@@ -70,6 +73,22 @@ input[type=email] {
     font-size: 13px;
     background-color: var(--primary-color);
     color: white;
+} */
+
+html,
+body {
+    height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+    margin: 1em;
+}
+
+mat-form-field {
+    padding: 8px;
+}
