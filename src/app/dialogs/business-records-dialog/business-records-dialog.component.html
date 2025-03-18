@@ -1,1 +1,39 @@
-<p>business-records-dialog works!</p>
+<h2 mat-dialog-title>List Records of a Business</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Business Name</mat-label>
+        <input matInput [(ngModel)]="businessName" />
+    </mat-form-field>
+
+    <!-- TABLE -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="revenue">
+            <th mat-header-cell *matHeaderCellDef> Revenue </th>
+            <td mat-cell *matCellDef="let record"> {{ record.revenue }} </td>
+        </ng-container>
+        <ng-container matColumnDef="expenses">
+            <th mat-header-cell *matHeaderCellDef> Expenses </th>
+            <td mat-cell *matCellDef="let record"> {{ record.expenses }} </td>
+        </ng-container>
+        <ng-container matColumnDef="profit">
+            <th mat-header-cell *matHeaderCellDef> Profit </th>
+            <td mat-cell *matCellDef="let record"> {{ record.profit }} </td>
+        </ng-container>
+        <ng-container matColumnDef="taxesPaid">
+            <th mat-header-cell *matHeaderCellDef> Taxes Paid </th>
+            <td mat-cell *matCellDef="let record"> {{ record.taxesPaid }} </td>
+        </ng-container>
+        <ng-container matColumnDef="propertyTaxes">
+            <th mat-header-cell *matHeaderCellDef> Property Taxes </th>
+            <td mat-cell *matCellDef="let record"> {{ record.propertyTaxes }} </td>
+        </ng-container>
+        <ng-container matColumnDef="year">
+            <th mat-header-cell *matHeaderCellDef> Year </th>
+            <td mat-cell *matCellDef="let record"> {{ record.year }} </td>
+        </ng-container>
+        <ng-container matColumnDef="quarter">
+            <th mat-header-cell *matHeaderCellDef> Quarter </th>
+            <td mat-cell *matCellDef="let record"> {{ record.quarter }} </td>
+        </ng-container>
+    </table>
+</mat-dialog-content>
