@@ -1,1 +1,18 @@
-<p>average-income-dialog works!</p>
+<h2 mat-dialog-title>Average Income of a Business</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Business Name</mat-label>
+        <input matInput [(ngModel)]="businessName" />
+    </mat-form-field>
+</mat-dialog-content>
+
+@if (averageIncome()) {
+<p>
+    Average Income: <em>{{averageIncome()}}</em>
+</p>
+}
+
+<mat-dialog-actions>
+    <button mat-button (click)="submitBusinessName()">Submit</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+</mat-dialog-actions>
