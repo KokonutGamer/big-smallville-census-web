@@ -14,7 +14,7 @@ The Smallville Census Web Application (SCWA) provides tools and utilities for th
 - [X] Update the tax percentage for a specific property type
 
 ## About BIG Information Group
-BIG is the world's leading data analytics organization (*source: trust me*). At the forefront of data technology, BIG manages to surpass expectations consistently. Despite all of this, the GROuP (**G**enerous **R**eliable **Ou**utstanding **P**eople) always finds ways to contribute to society whatever it can.
+BIG is the world's leading data analytics organization (*source: trust me*). At the forefront of data technology, BIG manages to surpass expectations consistently. Despite all of this, our GROuP (**G**enerous **R**eliable **Ou**tstanding **P**eople) always finds ways to contribute to society whatever we can.
 
 ### Meet the team members
 - Gabe Lapingcao
