@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { Person } from '../parameters/person';
@@ -145,8 +145,8 @@ export class BackendService {
   */
 
   updateTaxPercentage(propertyTypeName: string, newTaxPercentage: number): Observable<any> {
-    const body = { newTaxPercentage: newTaxPercentage};
-    return this.http.put(`${this.baseUrl}/properties/${encodeURI(propertyTypeName)}/taxPercentage`, body);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(`${this.baseUrl}/properties/${encodeURI(propertyTypeName)}/taxPercentage`, newTaxPercentage, { headers });
   }
 
   getProperties(): Observable<any> {

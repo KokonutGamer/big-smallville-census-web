@@ -1,1 +1,16 @@
-<p>update-tax-percentage-dialog works!</p>
+<h2 mat-dialog-title>Update Property Tax Percentage</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Property Name</mat-label>
+        <input matInput [(ngModel)]="propertyName" required />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>New Tax Percentage</mat-label>
+        <input matInput [(ngModel)]="newTaxPercentage" required />
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="submitNewTaxPercentage()">Submit</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+</mat-dialog-actions>
