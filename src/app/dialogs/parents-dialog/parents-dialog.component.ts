@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './parents-dialog.component.css'
 })
 export class ParentsDialogComponent {
-  displayedColumns: string[] = ['firstName', 'lastName', 'ssn', 'birthDate', 'maritalStatus', 'email', 'phone'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'birthDate', 'maritalStatus', 'email', 'phone'];
   dataSource: Person[];
 
   constructor(
