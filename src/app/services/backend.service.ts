@@ -30,7 +30,7 @@ export class BackendService {
 
   getNeedyParents(): Observable<any> {
     // TODO implement
-    return this.http.get(``);
+    return this.http.get(`${this.baseUrl}/persons/needyParents`);
   }
 
   /* 
