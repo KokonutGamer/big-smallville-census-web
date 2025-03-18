@@ -25,7 +25,6 @@ export class LotNumberDialogComponent {
   submitAddress(): void {
     console.log(this.street());
     this.backendService.getLotNumber(this.street(), this.zipcode(), this.houseNumber(), this.district(), this.apartmentNumber()).subscribe((response) => {
-      // console.log(response);
       this.lotNumber.set(response.lotNumber);
     });
   }

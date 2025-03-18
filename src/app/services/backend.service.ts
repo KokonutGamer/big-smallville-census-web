@@ -73,8 +73,29 @@ export class BackendService {
       `${apartmentNumber ? `&apartment-number=${encodeURI(apartmentNumber)}` : ''}`);
   }
 
-  getHouseholdMembers(lotNumber: string, limit: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/households/members?lotNumber=${encodeURI(lotNumber)}&limit=${encodeURI(limit)}`);
+  getHouseholdMembers(lotNumber: string, limit: string): Observable<Person[]> {
+    return this.http.get<any>(`${this.baseUrl}/households/members?lotNumber=${encodeURI(lotNumber)}&limit=${encodeURI(limit)}`).pipe(
+      map(response => {
+        console.log('Raw API Response:', response);
+
+        // Ensure response is valid
+        if (!response || !Array.isArray(response.householdMembers)) {
+          console.error('Invalid response format:', response);
+          throw new Error('API response does not contain parents array');
+        }
+
+        // Map the data to match Person[]
+        return response.householdMembers.map((item: any) => ({
+          firstName: item.firstName || '',
+          lastName: item.lastName || '',
+          ssn: item.ssn || '',
+          birthDate: item.birthDate || '',
+          maritalStatus: item.maritalStatus || '',
+          email: item.email || '',
+          phone: item.phone || ''
+        }));
+      })
+    );
   }
 
   /* 

@@ -40,9 +40,5 @@ export class PersonPageComponent {
     this.persons$.subscribe((response) => {
       this.dialog.open(ParentsDialogComponent, { data: response });
     });
-    // this.backendService.getNeedyParents().subscribe((response) => {
-    //   console.log(response);
-
-    // });
   }
 }
