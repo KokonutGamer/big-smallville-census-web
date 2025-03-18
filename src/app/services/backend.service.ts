@@ -26,11 +26,18 @@ export class BackendService {
     const month = String(birthDate.getMonth() + 1).padStart(2, '0');
     const day = String(birthDate.getDate()).padStart(2, '0');
     const formattedDate = `${month}-${day}-${year}`
-    return this.http.put(`${this.baseUrl}/persons/add?ssn=${encodeURI(ssn)}&maritalStatusID=${encodeURI(maritalStatusId)}&lotNumber=${encodeURI(lotNumber)}&firstName=${encodeURI(firstName)}&lastName=${encodeURI(lastName)}&birthDate=${encodeURI(formattedDate)}${email ? `&email=${encodeURI(email)}` : ''}${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
+    return this.http.put(`${this.baseUrl}/persons/add\
+      ?ssn=${encodeURI(ssn)}\
+      &maritalStatusID=${encodeURI(maritalStatusId)}\
+      &lotNumber=${encodeURI(lotNumber)}\
+      &firstName=${encodeURI(firstName)}\
+      &lastName=${encodeURI(lastName)}\
+      &birthDate=${encodeURI(formattedDate)}\
+      ${email ? `&email=${encodeURI(email)}` : ''}\
+      ${phone ? `&phone=${encodeURI(phone)}` : ''}`, null);
   }
 
   getNeedyParents(): Observable<Person[]> {
-    // TODO implement
     return this.http.get<any>(`${this.baseUrl}/persons/needyParents`).pipe(
       map(response => {
         console.log('Raw API Response:', response);
@@ -38,7 +45,7 @@ export class BackendService {
         // Ensure response is valid
         if (!response || !Array.isArray(response.parents)) {
           console.error('Invalid response format:', response);
-          throw new Error('API response does not contain persons array');
+          throw new Error('API response does not contain parents array');
         }
 
         // Map the data to match Person[]
@@ -59,12 +66,11 @@ export class BackendService {
   ==================== HOUSEHOLD ====================
   */
   getLotNumber(parameters: LotNumberParameters): Observable<any> {
-    return this.http.get(`
-      ${this.baseUrl}/persons/lot-number?
-      street=${encodeURI(parameters.street)}&
-      zipcode=${encodeURI(parameters.zipcode)}&
-      house-number=${encodeURI(parameters.houseNumber)}&
-      district=${encodeURI(parameters.district)}
+    return this.http.get(`${this.baseUrl}/persons/lot-number\
+      ?street=${encodeURI(parameters.street)}\
+      &zipcode=${encodeURI(parameters.zipcode)}\
+      &house-number=${encodeURI(parameters.houseNumber)}\
+      &district=${encodeURI(parameters.district)}\
       ${parameters.aparmentNumber ? `&apartment-number=${encodeURI(parameters.aparmentNumber)}` : ''}`);
   }
 
