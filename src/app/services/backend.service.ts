@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { Person } from '../parameters/person';
 import { Employee } from '../parameters/employee';
+import { Property } from './property';
 
 @Injectable({
   providedIn: 'root'
@@ -149,9 +150,25 @@ export class BackendService {
     return this.http.put(`${this.baseUrl}/properties/${encodeURI(propertyTypeName)}/taxPercentage`, newTaxPercentage, { headers });
   }
 
-  getProperties(): Observable<any> {
+  getProperties(): Observable<Property[]> {
     // TODO implement
-    return this.http.get(``);
+    return this.http.get<any>(`${this.baseUrl}/properties/displayPropertyTypeTable}`).pipe(
+      map(response => {
+        console.log('Raw API Response:', response);
+
+        // Ensure response is valid
+        if (!response || !Array.isArray(response.propertyTypes)) {
+          console.error('Invalid response format:', response);
+          throw new Error('API response does not contain parents array');
+        }
+
+        // Map the data to match Property[]
+        return response.propertyTypes.map((item: any) => ({
+          name: item.name || '',
+          taxPercentage: item.taxPercentage || 0
+        }));
+      })
+    );
   }
 
 }
