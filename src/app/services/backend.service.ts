@@ -4,6 +4,7 @@ import { catchError, first, map, Observable, tap, throwError } from 'rxjs';
 import { Person } from '../parameters/person';
 import { Employee } from '../parameters/employee';
 import { Property } from '../parameters/property';
+import { BusinessRecord } from '../parameters/business-record';
 
 @Injectable({
   providedIn: 'root'
@@ -108,9 +109,28 @@ export class BackendService {
     return this.http.get(`${this.baseUrl}/businesses/avgincome?businessName=${encodeURI(businessName)}`);
   }
 
-  // TODO wait on API change
-  getBusinessRecords(businessName: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/businesses/listBusRecords?businessName=${encodeURI(businessName)}`);
+  getBusinessRecords(businessName: string): Observable<BusinessRecord[]> {
+    return this.http.get<any>(`${this.baseUrl}/businesses/listBusRecords?businessName=${encodeURI(businessName)}`).pipe(
+      map(response => {
+        console.log('Raw API Response:', response);
+
+        // Ensure response is valid
+        if (!response || !Array.isArray(response.busRecords)) {
+          console.error('Invalid response format:', response);
+          throw new Error('API response does not contain parents array');
+        }
+
+        // Map the data to match BusinessRecord[]
+        return response.busRecords.map((item: any) => ({
+          revenue: item.revenue || 0,
+          expenses: item.expenses || 0,
+          taxesPaid: item.taxesPaid || 0,
+          propertyTaxes: item.propertyTaxes || 0,
+          year: item.year || 0,
+          quarter: item.quarter || ''
+        }));
+      })
+    );
   }
 
   updateMinWage(businessName: string, newWage: number): Observable<any> {
@@ -151,7 +171,6 @@ export class BackendService {
   }
 
   getProperties(): Observable<Property[]> {
-    // TODO implement
     return this.http.get<any>(`${this.baseUrl}/properties/displayPropertyTypeTable`).pipe(
       map(response => {
         console.log('Raw API Response:', response);
