@@ -145,9 +145,8 @@ export class BackendService {
   */
 
   updateTaxPercentage(propertyTypeName: string, newTaxPercentage: number): Observable<any> {
-    // TODO implement
-    const body = {};
-    return this.http.put(``, body);
+    const body = { newTaxPercentage: newTaxPercentage};
+    return this.http.put(`${this.baseUrl}/properties/${encodeURI(propertyTypeName)}/taxPercentage`, body);
   }
 
   getProperties(): Observable<any> {
