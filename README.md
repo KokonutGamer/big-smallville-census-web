@@ -4,7 +4,7 @@ The Smallville Census Web Application (SCWA) provides tools and utilities for th
 ### Available Functionalities (TODO)
 - [X] List the lot number of a household
 - [X] Calculate incentives for an individual person
-- [ ] List all of the records for a business
+- [X] List all of the records for a business
 - [X] Update the minimum wage at a business
 - [X] Find the average income of employees at a business
 - [X] List married parents and guardians who have at least a number of children and do not own a house
